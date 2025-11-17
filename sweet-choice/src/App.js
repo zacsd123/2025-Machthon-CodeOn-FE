@@ -5,14 +5,16 @@ import MypageSweet from "./pages/MypageSweet";
 import MypageHistory from "./pages/MypageHistory";
 import Search from "./pages/search";
 import Mainpage from "./pages/Mainpage";
+import Signin from "./pages/signin";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Mainpage />} />
-        <Route path="/signup" element={<div>sign</div>} />
-        <Route path="/shearch" element={<Search />} />
+        <Route path="/signup" element={<div>signup</div>} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/mypage_edit" element={<MypageEdit/>}/>
         <Route path="/mypage_sweet" element={<MypageSweet/>}/>
         <Route path="/mypage_history" element={<MypageHistory/>}/>

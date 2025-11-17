@@ -1,3 +1,4 @@
+import Header from "../components/Header"
 import "../styles/Mainpage.css"
 
 const abilityKeys = ["id1", "id2", "id3", "id4", "id5", "id6", "id7", "id8"]
@@ -16,7 +17,7 @@ const abilityItems = {
 export default function Mainpage() {
     return (
         <div id="Mainpage">
-            <div id="header">imheader</div>
+            <Header />
             <div id="mainimgbody">
                 <span id="backgroundIMG"/>
                 
