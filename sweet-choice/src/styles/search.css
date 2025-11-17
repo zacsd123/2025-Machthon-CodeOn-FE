@@ -30,6 +30,10 @@
     background-color: white;
     border-radius: 10px;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    row-gap: 20px;
 }
 
 #ToggleMainTopic {
@@ -68,6 +72,28 @@
 
 .right {
     left: 50%;
+}
+
+#InputArea {
+    display: flex;
+    padding: 10px;
+    background-color: #FEF3E2;
+    border-radius: 10px;
+}
+
+#CategoryInput {
+    border: none;
+    width: 100%;
+    background-color: #FEF3E2;
+}
+
+#CategoryInput:focus {
+    border: none;
+    outline: none;
+}
+
+#CategoryInput::placeholder {
+    color: #beb4a2;
 }
 
 #Category {
@@ -153,4 +179,31 @@
 
 .tableActive {
     background-color: #E6D9C3;
+}
+
+.NullText {
+
+}
+
+#SelectedText {
+    height: 100%;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+}
+
+#ReturnArea {
+    display: flex;
+    justify-content: space-between;
+}
+
+#SubmitButton {
+    background-color: #FEF3E2;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 7px;
+}
+
+#SubmitButton:hover {
+    cursor: pointer;
 }
