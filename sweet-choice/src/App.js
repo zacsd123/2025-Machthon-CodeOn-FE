@@ -5,6 +5,7 @@ import MypageSweet from "./pages/MypageSweet";
 import MypageHistory from "./pages/MypageHistory";
 import Search from "./pages/search";
 import Mainpage from "./pages/Mainpage";
+import Signup from "./pages/signup";
 import Login from "./pages/Login";
 
 function App() {
@@ -12,12 +13,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Mainpage />} />
-        <Route path="/signup" element={<div>sign</div>} />
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/search" element={<Search />} />
+        <Route path="/mypage_edit" element={<MypageEdit/>}/>
+        <Route path="/signup" element={<Signup />} />
         <Route path="/shearch" element={<Search />} />
         <Route path="/mypage" element={<MypageEdit/>}/>
         <Route path="/mypage_sweet" element={<MypageSweet/>}/>
         <Route path="/mypage_history" element={<MypageHistory/>}/>
-        <Route path="/login" element={<Login/>}/>
       </Routes>
     </BrowserRouter>
   );
