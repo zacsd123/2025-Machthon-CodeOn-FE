@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import MypageCalendar from "../components/Calendar";
 import SweetList from "../components/SweetList";
 import Graph from "../components/Graph";
+import Header from "../components/Header";
 
 const MypageSweet = () => {
     const navigate = useNavigate();
   return (
     <M.Container>
-      <M.Header></M.Header>
+      <Header />
       <M.Wrapper>
         <M.Menu>
           <M.Edit onClick={() => navigate("/mypage")}>

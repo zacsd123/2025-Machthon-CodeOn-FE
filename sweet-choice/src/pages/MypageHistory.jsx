@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import * as M from "../styles/StyledMypageHistory";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 const MypageHistory = () => {
     const navigate = useNavigate();
     const [selectTab, setSelectTabl] = useState("sweet");
   return (
     <M.Container>
-      <M.Header></M.Header>
+      <Header />
       <M.Wrapper>
         <M.Menu>
           <M.Edit onClick={() => navigate("/mypage")}>

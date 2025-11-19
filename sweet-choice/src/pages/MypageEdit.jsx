@@ -1,6 +1,7 @@
 import React,{ useState } from "react";
 import * as M from "../styles/StyledMypageEdit";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 const options = [
   { id: 'A', label: '[A] 건강 / 다이어트' },
@@ -16,7 +17,7 @@ const MypageEdit = () => {
 
   return (
     <M.Container>
-      <M.Header></M.Header>
+      <Header />
       <M.Wrapper>
         <M.Menu>
           <M.Edit onClick={()=>navigate("/mypage")}>
