@@ -3,18 +3,19 @@ import {styled} from "styled-components";
 export const Container = styled.div`
 width: 100%;
 min-height: 100vh; 
+padding-bottom: 100px;
 `;
 
 export const Header = styled.div`
 width: 100%;
-height: 129px;
+height: 100px;
 flex-shrink: 0;
 background: linear-gradient(91deg, #F1B800 53.79%, #EFA300 87.77%);
 `;
 
 export const Menu = styled.div`
-width: 218px;
-height: 297px;
+width: 200px;
+height: 279px;
 flex-shrink: 0;
 border-radius: 0px 20px 20px 0px;
 background: #FEF3E2;
@@ -28,7 +29,7 @@ height: 64px;
 flex-shrink: 0;
 color: #41341E;
 font-family: Inter;
-font-size: 24px;
+font-size: 22px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -40,24 +41,24 @@ cursor: pointer;
 `;
 
 export const GrayLine = styled.div`
-width: 146px;
+width: 120px;
 height: 8px;
 flex-shrink: 0;
 background-color: rgba(65, 52, 30, 0.3);
 filter: blur(2.5px);
 position: absolute;
 left:32px;
-top: 220px;
+top: 140px;
 `;
 
 export const OrangeLine = styled.div`
-width: 160px;
+width: 135px;
 height: 3px;
 background: #FFB22C;
 margin-top: 5px;
 position: absolute;
 left: 26px;
-top: 230px;
+top: 150px;
 `;
 
 
@@ -67,9 +68,9 @@ height: 64px;
 flex-shrink: 0;
 color: #41341E;
 font-family: Inter;
-font-size: 24px;
+font-size: 22px;
 font-style: normal;
-font-weight: 400;
+font-weight: 700;
 line-height: normal;
 margin-left: 35px;
 margin-bottom: 14px;
@@ -82,9 +83,9 @@ height: 64px;
 flex-shrink: 0;
 color: #41341E;
 font-family: Inter;
-font-size: 24px;
+font-size: 22px;
 font-style: normal;
-font-weight: 700;
+font-weight: 400;
 line-height: normal;
 margin-left: 35px;
 cursor: pointer;
@@ -93,7 +94,7 @@ cursor: pointer;
 export const Wrapper = styled.div`
 display: flex;
 margin-top: 61px;
-gap: 4rem;
+gap: 2rem;
 `;
 
 export const CenterBox = styled.div`
@@ -106,13 +107,13 @@ export const Calendar = styled.div`
 `;
 
 export const SideBox = styled.div`
-width: 758px;
-height: 840px;
+width: 680px;
+height: 740px;
 flex-shrink: 0;
 border-radius: 20px;
 background: #FEF3E2;
 display: flex;
 flex-direction: column;
-gap: 52px;
+gap: 40px;
 align-items: center;
 `;

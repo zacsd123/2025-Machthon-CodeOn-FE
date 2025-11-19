@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<Mainpage />} />
         <Route path="/signup" element={<div>sign</div>} />
         <Route path="/shearch" element={<Search />} />
-        <Route path="/mypage_edit" element={<MypageEdit/>}/>
+        <Route path="/mypage" element={<MypageEdit/>}/>
         <Route path="/mypage_sweet" element={<MypageSweet/>}/>
         <Route path="/mypage_history" element={<MypageHistory/>}/>
       </Routes>

@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const Box = styled.div`
   .react-calendar {
-    width: 820px;
-    height: 840px;
+    width: 720px;
+    height: 740px;
     border-radius: 20px;
     background: #fef3e2;
     border: none;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    padding-bottom: 18px;
+    padding-top: 18px;
   }
   .react-calendar__navigation button {
     background: transparent;
@@ -21,21 +21,21 @@ export const Box = styled.div`
     display: none;
   }
   .react-calendar__navigation__prev-button {
-    padding-left: 62px;
+    padding-left: 55px;
   }
   .react-calendar__navigation__next2-button {
     display: none;
   }
   .react-calendar__navigation__next-button {
-    padding-right: 62px;
+    padding-right: 55px;
   }
   .react-calendar__navigation {
-    height: 100px;
+    height: 90px;
   }
   .react-calendar__navigation__label__labelText--from {
     color: #41341e;
     font-family: Inter;
-    font-size: 48px;
+    font-size: 43px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -43,7 +43,7 @@ export const Box = styled.div`
   .react-calendar__month-view__weekdays__weekday {
     color: #41341e;
     font-family: Inter;
-    font-size: 24px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -52,13 +52,13 @@ export const Box = styled.div`
     position: relative;
   }
   .react-calendar__month-view__weekdays::after {
-    width: 767px;
+    width: 690px;
     height: 1px;
     background: #41341e;
     position: absolute;
     content: "";
-    top: 70px;
-    left: 30px;
+    top: 63px;
+    left: 27px;
   }
   .react-calendar__month-view__weekdays__weekday abbr {
     text-decoration: none;
@@ -67,12 +67,12 @@ export const Box = styled.div`
     color: #41341e;
     text-align: right;
     font-family: Inter;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     text-align: center;
-    margin-top: 52px;
+    margin-top: 42px;
     position: relative;
   }
   .react-calendar__tile:enabled:hover,
@@ -89,8 +89,8 @@ export const Box = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -48%);
-    width: 55px;
-    height: 55px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background: #ffd894;
     filter: blur(2px);
