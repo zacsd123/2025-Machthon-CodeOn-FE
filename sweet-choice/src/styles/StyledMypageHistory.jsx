@@ -3,17 +3,18 @@ import {styled} from "styled-components";
 export const Container = styled.div`
 width: 100%;
 min-height: 100vh; 
+padding-bottom: 100px;
 `;
 export const Header = styled.div`
 width: 100%;
-height: 129px;
+height: 100px;
 flex-shrink: 0;
 background: linear-gradient(91deg, #F1B800 53.79%, #EFA300 87.77%);
 `;
 
 export const Menu = styled.div`
-width: 218px;
-height: 297px;
+width: 200px;
+height: 279px;
 flex-shrink: 0;
 border-radius: 0px 20px 20px 0px;
 background: #FEF3E2;
@@ -27,7 +28,7 @@ height: 64px;
 flex-shrink: 0;
 color: #41341E;
 font-family: Inter;
-font-size: 24px;
+font-size: 22px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -39,7 +40,7 @@ cursor: pointer;
 `;
 
 export const GrayLine = styled.div`
-width: 146px;
+width: 140px;
 height: 8px;
 flex-shrink: 0;
 background-color: rgba(65, 52, 30, 0.3);
@@ -50,7 +51,7 @@ top: 220px;
 `;
 
 export const OrangeLine = styled.div`
-width: 158px;
+width: 152px;
 height: 3px;
 background: #FFB22C;
 margin-top: 5px;
@@ -65,7 +66,7 @@ height: 64px;
 flex-shrink: 0;
 color: #41341E;
 font-family: Inter;
-font-size: 24px;
+font-size: 22px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -80,7 +81,7 @@ height: 64px;
 flex-shrink: 0;
 color: #41341E;
 font-family: Inter;
-font-size: 24px;
+font-size: 22px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -95,7 +96,7 @@ gap: 9rem;
 `;
 
 export const Category = styled.div`
-width: 1400px;
+width: 1150px;
 height: 100px;
 flex-shrink: 0;
 border-radius: 10px 10px 0 0;
@@ -110,7 +111,7 @@ export const CenterBox = styled.div`
 `;
 
 export const CSweet = styled.div`
-margin-left: 200px;
+margin-left: 150px;
 color: #41341E;
 font-family: Inter;
 font-size: 24px;
@@ -149,7 +150,7 @@ display: ${({active})=> (active? "block" : "none")};
 
 export const Food = styled.div`
 width:118px;
-margin-left: 180px;
+margin-left: 140px;
 color: #41341E;
 font-family: Inter;
 font-size: 24px;
@@ -186,7 +187,7 @@ display: ${({active})=> (active? "block" : "none")};
 `;
 
 export const Report = styled.div`
-margin-left: 190px;
+margin-left: 150px;
 color: #41341E;
 font-family: Inter;
 font-size: 24px;
@@ -226,12 +227,12 @@ export const Divide = styled.div`
 width: 2px;
 height: 71px;
 background: #41341E;
-margin-left: 170px;
+margin-left: 130px;
 `;
 
 export const InfoBox = styled.div`
-width: 328px;
-height: 393px;
+width: 295px;
+height: 354px;
 background: #FEF3E2;
 margin-top: 17px;
 display: flex;
