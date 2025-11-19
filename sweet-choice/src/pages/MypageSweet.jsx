@@ -10,7 +10,6 @@ const MypageSweet = () => {
     const navigate = useNavigate();
   return (
     <M.Container>
-      <Header />
       <M.Wrapper>
         <M.Menu>
           <M.Edit onClick={() => navigate("/mypage")}>

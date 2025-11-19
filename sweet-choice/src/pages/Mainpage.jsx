@@ -17,7 +17,6 @@ const abilityItems = {
 export default function Mainpage() {
     return (
         <div id="Mainpage">
-            <Header />
             <div id="mainimgbody">
                 <span id="backgroundIMG"/>
                 

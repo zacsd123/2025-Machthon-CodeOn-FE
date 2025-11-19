@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "../styles/signup.css"
+import { SCFunctionContext } from "../App"
 
 export default function Signup() {
 
+    const {setPageNum} = useContext(SCFunctionContext)
     const [currPage, setCurrPage] = useState(0)
 
     const onNextQ = () => {
@@ -16,9 +18,14 @@ export default function Signup() {
 
     const nav = useNavigate()
 
+    const goMain = () => {
+        setPageNum("/")
+        nav("/")
+    }
+
     return (
         <div id="signinbody">
-            <div id="Logo" onClick={() => nav("/")}>
+            <div id="Logo" onClick={goMain}>
                 <span id="Logoimg"></span>
                 <span>당로그</span>
             </div>
