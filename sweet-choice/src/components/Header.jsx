@@ -22,9 +22,9 @@ const Header = () => {
                 <ul id ="ItemList">
                     <li id="img" className="item" onClick={() => onPageChange("/")}>
                     </li>
-                    <li id="search" className={(pageNum === "/search" ? "active " : "") + " item"} onClick={() => onPageChange("/search")}>검색</li>
-                    <li id="info" className={(pageNum === "/info" ? "active " : "") + " item"} onClick={() => onPageChange("/info")}>당 정보</li>
-                    <li id="mypage" className={(pageNum === "/mypage_edit" ? "active " : "") + " item"} onClick={() => onPageChange("/mypage_edit")}>마이페이지</li>
+                    <li id="search" className={(pageNum === "/search" ? "Hactive " : "") + " item"} onClick={() => onPageChange("/search")}>검색</li>
+                    <li id="info" className={(pageNum === "/info" ? "Hactive " : "") + " item"} onClick={() => onPageChange("/info")}>당 정보</li>
+                    <li id="mypage" className={(pageNum === "/mypage_edit" ? "Hactive " : "") + " item"} onClick={() => onPageChange("/mypage_edit")}>마이페이지</li>
                 </ul>
                 <div id="signin-up">
                     <span id="signin" onClick={() => onPageChange("/login")}>로그인</span>
