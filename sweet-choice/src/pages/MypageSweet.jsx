@@ -12,7 +12,7 @@ const MypageSweet = () => {
       <M.Header></M.Header>
       <M.Wrapper>
         <M.Menu>
-          <M.Edit onClick={() => navigate("/mypage_edit")}>
+          <M.Edit onClick={() => navigate("/mypage")}>
             개인정보 수정
           </M.Edit>
           <M.Sweet onClick={() => navigate("/mypage_sweet")}>
