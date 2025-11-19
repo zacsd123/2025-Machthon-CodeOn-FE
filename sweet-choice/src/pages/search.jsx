@@ -83,7 +83,6 @@ export default function Search() {
 
     return (
         <div id="search">
-            <Header />
             <div id="MainContent">
                 <div id="search_area" onClick={onSearchModal}>
                     <span>원하는 정보를 검색하세요!</span>

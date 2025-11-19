@@ -17,7 +17,6 @@ const MypageEdit = () => {
 
   return (
     <M.Container>
-      <Header />
       <M.Wrapper>
         <M.Menu>
           <M.Edit onClick={()=>navigate("/mypage")}>

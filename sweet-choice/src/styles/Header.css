@@ -26,6 +26,8 @@
 
 .active {
     background-color: #F3C623;
+    box-shadow:0 0 5px 5px #F3C623;
+    border-radius: 10px;
 }
 
 #img {
@@ -33,4 +35,8 @@
     background-size: cover;
     width: 30px;
     height: 30px;
+}
+#signin-up {
+    display: flex;
+    gap: 10px;
 }

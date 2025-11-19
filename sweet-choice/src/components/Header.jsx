@@ -1,23 +1,26 @@
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import "../styles/Header.css"
+import { SCFunctionContext, SCValueageContext } from "../App"
 
 const Header = () => {
 
     const nav = useNavigate()
 
-    const [pageNum, setPageNum] = useState("")
+    const {setPageNum} = useContext(SCFunctionContext)
+    const {pageNum} = useContext(SCValueageContext)
 
     const onPageChange = (url) => {
         setPageNum(url)
         nav(url)
+        console.log(pageNum==="/login")
     }
 
     return (
-        <div id={"Header"}>
+        <div id="Header" style={{display:((pageNum === "/login") || (pageNum === "/signup") ? "none" : "")}}>
             <div id="nav">
                 <ul id ="ItemList">
-                    <li id="img" className={(pageNum === "/" ? "active " : "") + " item"} onClick={() => onPageChange("/")}>
+                    <li id="img" className="item" onClick={() => onPageChange("/")}>
                     </li>
                     <li id="search" className={(pageNum === "/search" ? "active " : "") + " item"} onClick={() => onPageChange("/search")}>검색</li>
                     <li id="info" className={(pageNum === "/info" ? "active " : "") + " item"} onClick={() => onPageChange("/info")}>당 정보</li>
@@ -25,6 +28,7 @@ const Header = () => {
                 </ul>
                 <div id="signin-up">
                     <span id="signin" onClick={() => onPageChange("/login")}>로그인</span>
+                    <span>또는</span>
                     <span id="signup" onClick={() => onPageChange("/signup")}>회원가입</span>
                 </div>
             </div>

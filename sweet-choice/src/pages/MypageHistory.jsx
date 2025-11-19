@@ -8,7 +8,6 @@ const MypageHistory = () => {
     const [selectTab, setSelectTabl] = useState("sweet");
   return (
     <M.Container>
-      <Header />
       <M.Wrapper>
         <M.Menu>
           <M.Edit onClick={() => navigate("/mypage")}>

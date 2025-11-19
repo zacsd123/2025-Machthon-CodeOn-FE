@@ -1,9 +1,12 @@
-import React,{ useRef, useState } from "react";
+import React,{ useContext, useRef, useState } from "react";
 import * as L from "../styles/StyledLogin";
 import { useNavigate } from "react-router-dom";
 import axios from "../axios/axios";
+import { SCFunctionContext } from "../App";
 
 const Login = () => {
+
+    const {setPageNum} = useContext(SCFunctionContext)
 
     const [id, setId] = useState("")
     const [password, setPassword] = useState("")
@@ -18,10 +21,15 @@ const Login = () => {
         // const a = axios.get(`${id} ${password}`)
     }
 
+    const goMain = () => {
+        setPageNum("/")
+        nav("/")
+    }
+
     return(
         <L.Container>
             <L.Logo>
-                <img src={`${process.env.PUBLIC_URL}/images/loginlogo.svg`} onClick={() => nav("/")}/>
+                <img src={`${process.env.PUBLIC_URL}/images/loginlogo.svg`} onClick={goMain}/>
             </L.Logo>
             <L.CenterBox>
                 <L.LeftBox></L.LeftBox>
