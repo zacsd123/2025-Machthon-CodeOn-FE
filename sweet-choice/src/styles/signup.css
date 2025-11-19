@@ -1,0 +1,51 @@
+#signinbody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+    height: 100vh;
+}
+
+#Logo {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#Logoimg {
+    background-image: url("../imgs/Logo.png");
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+}
+
+#singinPage {
+    flex-grow: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    max-width: 1200px;
+}
+
+#infobox {
+    flex-basis: 40%;
+    flex-grow: 0;
+    background-color: #FFB22C;
+    height: 100%;
+}
+
+.Page {
+    flex-basis: 60%;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #FEF3E2;
+    height: 100%;
+}
+
+#footer {
+    flex-grow: 1;
+}
