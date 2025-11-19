@@ -1,5 +1,6 @@
 import { useState } from "react"
 import "../styles/search.css"
+import Header from "../components/Header"
 
 const MockCategory = ["카테고리1", "카테고리2", "카테고리3", "카테고리4", "카테고리5"]
 
@@ -82,12 +83,12 @@ export default function Search() {
 
     return (
         <div id="search">
-            <div id="header">imheader</div>
+            <Header />
             <div id="MainContent">
                 <div id="search_area" onClick={onSearchModal}>
                     <span>원하는 정보를 검색하세요!</span>
                     <div id="search_button">
-                        <img src="" alt="돋보기" />
+                        <img src="a" alt="돋보기" />
                         <span>검색하기</span>
                     </div>
                 </div>

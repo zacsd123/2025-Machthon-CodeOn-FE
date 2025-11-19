@@ -24,8 +24,13 @@
 .item {
 }
 
+.active {
+    background-color: #F3C623;
+}
+
 #img {
     background-image: url("../imgs/Logo.png");
     background-size: cover;
-    width: 20px;
+    width: 30px;
+    height: 30px;
 }
