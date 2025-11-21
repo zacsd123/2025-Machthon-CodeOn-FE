@@ -1,17 +1,45 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import "../styles/search.css";
+import axios from "../axios/axios";
 
-export const FoodCategory = ({MockCategoryList, onCategorySelect, CategorySelect, TableSelect, MockCategory, onTableSelect}) => {
+export const FoodCategory = ({
+  onCategorySelect,
+  CategorySelect, 
+  TableSelect, 
+  MockCategory=[], 
+  onTableSelect, 
+  setCategoryList, 
+  CategoryList,
+  UpCageNum,
+  DownCageNum,
+  CateNum
+}) => {
 
-    const [CateNum, setCateNum] = useState(0)
+  // console.log(MockCategory)
 
-    const UpCageNum = () => {
-        setCateNum(CateNum+1)
+
+
+    useEffect(() => {
+    const getCategoryList = async () => {
+        const localUserData = localStorage.getItem("accessToken")
+        const headers = {
+          "authorization": `Bearer ${localUserData}`
+        }
+        
+        try {
+            const res = await axios.get(`/api/food/search/category?search=${MockCategory[CategorySelect+CateNum*5]}`, {
+                 headers: headers
+            });
+            console.log(res.data)
+            setCategoryList(res.data);
+            
+        } catch (e) {
+            console.error(e);
+            setCategoryList([]);
+        }
     }
-
-    const DownCageNum = () => {
-        setCateNum(CateNum-1)
-    }
+    getCategoryList()
+}, [CategorySelect, CateNum]);
 
     const filterdCategory = MockCategory.filter((item, index) => (
         CateNum*5 <= index && index < (CateNum+1)*5
@@ -51,22 +79,23 @@ export const FoodCategory = ({MockCategoryList, onCategorySelect, CategorySelect
           <tbody>
             {MockCategory.map((item, index) =>
               CategorySelect === index
-                ? MockCategoryList[item].map((subitem, subindex) => (
+                ? 
+                CategoryList.map((subitem, subindex) => (
                     <tr
                       key={subindex}
                       className={
-                        (TableSelect === subindex ? "tableActive " : "") +
+                        (TableSelect === subitem["foodId"] ? "tableActive " : "") +
                         "TableItemRow"
                       }
                       onClick={() => {
-                        onTableSelect(subindex);
+                        onTableSelect(subitem["foodId"]);
                       }}
                     >
                       <td>{subindex + 1}</td>
-                      <td>{subitem}</td>
+                      <td>{subitem["foodName"]}</td>
                       <td>비고란</td>
                     </tr>
-                  ))
+                ))
                 : null
             )}
           </tbody>
