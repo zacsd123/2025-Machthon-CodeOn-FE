@@ -4,13 +4,12 @@ import * as C from "../styles/StyledCalendar";
 import 'react-calendar/dist/Calendar.css';
 import { formatLongDate } from "react-calendar/dist/shared/dateFormatter.js";
 
-const MypageCalendar = () => {
-    const [selectedDate,setSelectedDate] = useState(new Date());
+const MypageCalendar = ({loadDate,onChangeDate}) => {
     return(
         <C.Box>
             <Calendar
-            value={selectedDate}
-            onChange={setSelectedDate}
+            value={loadDate}
+            onChange={onChangeDate}
              calendarType="gregory"
              prevLabel={<img src={`${process.env.PUBLIC_URL}/images/prev.svg`}/>}
              nextLabel={<img src={`${process.env.PUBLIC_URL}/images/next.svg`}/>}

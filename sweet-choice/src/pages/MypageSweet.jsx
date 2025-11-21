@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 import MypageCalendar from "../components/Calendar";
 import SweetList from "../components/SweetList";
 import Graph from "../components/Graph";
-import Header from "../components/Header";
 
 const MypageSweet = () => {
     const navigate = useNavigate();
+    const [loadDate, setLoadDate] = useState(new Date());
+    console.log("현재 loadDate:", loadDate);
   return (
     <M.Container>
       <M.Wrapper>
@@ -26,11 +27,14 @@ const MypageSweet = () => {
         </M.Menu>
         <M.CenterBox>
             <M.Calendar>
-              <MypageCalendar/>
+              <MypageCalendar
+                loadDate={loadDate}
+                onChangeDate={setLoadDate}
+              />
             </M.Calendar>
             <M.SideBox>
-              <SweetList/>
-              <Graph/>
+              <SweetList date={loadDate}/>
+              <Graph date={loadDate}/>
             </M.SideBox>
         </M.CenterBox>
       </M.Wrapper>

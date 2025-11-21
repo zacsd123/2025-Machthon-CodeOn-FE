@@ -19,8 +19,7 @@ const MypageEdit = () => {
 
   const loadProfile = async () => {
     try {
-      const accessToken =
-        "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTFAdGVzdC5jb20iLCJpYXQiOjE3NjM3MDk5MzgsImV4cCI6MTc2MzcxMzUzOH0.fuguiDKVlrADiWqbjkbcej7aHVOMrhfpa8HQn6eGPTw";
+      const accessToken = localStorage.getItem("accessToken");
       const response = await axios.get("/api/mypage/info/getUser", {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -39,8 +38,7 @@ const MypageEdit = () => {
   }, []);
   const save = async() => {
     try{
-      const accessToken =
-        "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTFAdGVzdC5jb20iLCJpYXQiOjE3NjM3MDk5MzgsImV4cCI6MTc2MzcxMzUzOH0.fuguiDKVlrADiWqbjkbcej7aHVOMrhfpa8HQn6eGPTw";
+      const accessToken = localStorage.getItem("accessToken");;
       const body = {
         nickname : profile.nickname,
         password:  profile.password,
