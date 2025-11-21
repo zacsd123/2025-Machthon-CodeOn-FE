@@ -1,8 +1,11 @@
 import axios from "axios"
 
 const instance = axios.create({
-  baseURL: "..",
+  baseURL: "https://nathalie-photospectroscopical-nonconnubially.ngrok-free.dev",
   timeout: 10000,
+  headers: {
+    "ngrok-skip-browser-warning": "true", 
+  },
 });
 
 instance.interceptors.response.use(
