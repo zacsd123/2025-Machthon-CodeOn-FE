@@ -2,8 +2,8 @@ import { styled } from "styled-components";
 
 export const Container = styled.div`
 width: 100%;
-min-height: 100vh; 
-padding-bottom: 100px;
+min-height: 90vh; 
+padding-top: 3.7rem;
 `;
 
 export const Header = styled.div`
@@ -198,4 +198,21 @@ background: #000;
 export const Text = styled.div`
 padding-left: 20px;
 margin-bottom: 6px;
+`;
+
+export const Save = styled.input`
+width: 123px;
+height: 44px;
+flex-shrink: 0;
+border-radius: 20px;
+background: #FFB22C;color: #41341E;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+border: none;
+outline: none;
+margin-top: 62px;
+margin-left: 63rem;
 `;
