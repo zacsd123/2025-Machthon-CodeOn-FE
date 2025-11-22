@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Box = styled.div`
 width: 565px;
-height: 248px;
+min-height: 248px;
 flex-shrink: 0;
 border-radius: 8px;
 background: #FFFAF2;
@@ -29,5 +29,13 @@ margin-left: 18px;
 `;
 
 export const List = styled.div`
-
+color: #000;
+font-family: Inter;
+font-size: 0.75rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+padding-left: 50px;
+display: flex;
+gap: 6rem;
 `;
