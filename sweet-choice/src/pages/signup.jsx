@@ -3,6 +3,42 @@ import { useNavigate } from "react-router-dom";
 import "../styles/signup.css";
 import { SCFunctionContext } from "../App";
 import axios from "../axios/axios";
+import { CheckCircle, Zap, ArrowLeft, ArrowRight } from 'lucide-react';
+
+const InfoCard = ({ currPage }) => {
+    let title = "당로그";
+    let content = "";
+    
+    switch (currPage) {
+        case 0:
+            title = "회원가입";
+            content = "당로그에 오신 것을 환영합니다! 정확한 맞춤형 영양 분석을 위해 기본 정보를 입력해 주세요.";
+            break;
+        case 1:
+            title = "사용 목적 선택";
+            content = "회원님의 건강 목표에 따라 맞춤형 분석을 제공합니다. 사용 목적을 선택해 주세요.";
+            break;
+        case 2:
+            title = "신체 정보 입력";
+            content = "AI 맞춤형 분석을 위해 신체 정보가 필요합니다. 정보는 안전하게 보관되며 탈퇴 시 즉시 파기됩니다.";
+            break;
+        case 3:
+            title = "가입 완료";
+            content = "모든 준비가 끝났습니다! 지금 바로 당로그의 맞춤형 서비스를 경험해 보세요.";
+            break;
+        default:
+            title = "정보";
+            content = "정보가 많아요 (화면 넘어갈때마다 설명이 바뀌는 카드)";
+            break;
+    }
+
+    return (
+        <div className="info-card">
+            <h3 className="info-card-title">{title}</h3>
+            <p className="info-card-content">{content}</p>
+        </div>
+    );
+};
 
 const initialFormState = {
   firstName: "",
@@ -73,11 +109,6 @@ export default function Signup() {
 
   const nav = useNavigate();
 
-  const goMain = () => {
-    setPageNum("/");
-    nav("/");
-  };
-
   const handleSignup = async () => {
     setGlobalError(null);
 
@@ -116,14 +147,11 @@ export default function Signup() {
     };
 
     try {
-      const response = await axios.post(`/api/auth/signup`,
-        payload,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post(`/api/auth/signup`, payload, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       if (response.status === 200) {
         setCurrPage(currPage + 1);
@@ -143,257 +171,105 @@ export default function Signup() {
     switch (currPage) {
       case 0:
         return (
-          <div id="first" className="flex flex-col gap-4">
-            <div id="Itemlist" className="flex gap-2">
-              <input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                placeholder="성"
-                className="w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-              <input
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                placeholder="이름"
-                className="w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
+          <div id="first" className="page-content">
+            <h4 className="page-title-sm">기본 정보를 입력해주세요.</h4>
+            <div className="input-group-row">
+              <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="성" className="input-field half" />
+              <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="이름" className="input-field half" />
             </div>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="이메일"
-              className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-            <input
-              type="text"
-              name="nickname"
-              value={formData.nickname}
-              onChange={handleChange}
-              placeholder="아이디 (닉네임)"
-              className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-            <div className="flex gap-2">
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="비밀번호"
-                className="w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-              <input
-                type="password"
-                name="passwordConfirm"
-                value={formData.passwordConfirm}
-                onChange={handleChange}
-                placeholder="비밀번호확인"
-                className="w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
+            <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="이메일" className="input-field full" />
+            <input type="text" name="nickname" value={formData.nickname} onChange={handleChange} placeholder="아이디" className="input-field full" />
+            <div className="input-group-row">
+              <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="비밀번호" className="input-field half" />
+              <input type="password" name="passwordConfirm" value={formData.passwordConfirm} onChange={handleChange} placeholder="비밀번호 확인" className="input-field half" />
             </div>
-            <button
-              onClick={onNextQ}
-              className="w-full p-3 mt-4 text-white bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 transition duration-150"
-            >
-              다음
+            <button onClick={onNextQ} className="btn btn-next">
+                다음 <ArrowRight className="btn-icon" />
             </button>
           </div>
         );
       case 1:
         return (
-          <div id="second" className="flex flex-col gap-6">
-            <span className="text-lg font-semibold text-gray-700">
-              우리 웹사이트를 사용하는 이유를 골라주세요.
-            </span>
-
-            <div className="flex flex-col gap-3">
-              <label className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-gray-200 cursor-pointer hover:bg-indigo-50 transition duration-150">
-                <input
-                  type="radio"
-                  name="userType"
-                  value="A"
-                  checked={formData.userType === "A"}
-                  onChange={handleChange}
-                  className="form-radio h-4 w-4 text-indigo-600"
-                />
-                <span>
-                  <strong className="text-indigo-600">[A] 건강/다이어트</strong>{" "}
-                  (총 당류와 칼로리 중심)
-                </span>
-              </label>
-              <label className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-gray-200 cursor-pointer hover:bg-indigo-50 transition duration-150">
-                <input
-                  type="radio"
-                  name="userType"
-                  value="B"
-                  checked={formData.userType === "B"}
-                  onChange={handleChange}
-                  className="form-radio h-4 w-4 text-indigo-600"
-                />
-                <span>
-                  <strong className="text-indigo-600">
-                    [B] 혈당 관리/전단계
-                  </strong>{" "}
-                  (총 당류, 당알코올 등 혈당 영향 중심)
-                </span>
-              </label>
-              <label className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-gray-200 cursor-pointer hover:bg-indigo-50 transition duration-150">
-                <input
-                  type="radio"
-                  name="userType"
-                  value="C"
-                  checked={formData.userType === "C"}
-                  onChange={handleChange}
-                  className="form-radio h-4 w-4 text-indigo-600"
-                />
-                <span>
-                  <strong className="text-indigo-600">[C] 당뇨 환자</strong>{" "}
-                  (엄격한 당류 제한, 대체당 종류별 안전성 고지)
-                </span>
-              </label>
+          <div id="second" className="page-content">
+            <span className="page-title-sm">~을 사용하는 목적을 골라주세요.</span>
+            
+            <div className="radio-group">
+              {['A', 'B', 'C'].map(type => (
+                <label key={type} className={`radio-label ${formData.userType === type ? 'radio-selected' : ''}`}>
+                  <input type="radio" name="userType" value={type} checked={formData.userType === type} onChange={handleChange} className="hidden" />
+                  <span className="radio-text">[{type}] {
+                    type === 'A' ? '건강/다이어트 (총 당류와 칼로리 중심)' :
+                    type === 'B' ? '혈당 관리/전단계 (총 당류, 당알코올 등 혈당 영향 중심)' :
+                    '당뇨 환자 (엄격한 당류 제한, 대체당 종류별 안전성 고지)'
+                  }</span>
+                </label>
+              ))}
             </div>
-
-            <div className="flex justify-between mt-4">
-              <button
-                onClick={onPrevQ}
-                className="p-3 px-6 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 transition duration-150"
-              >
-                이전
+            
+            <div className="btn-group-row">
+              <button onClick={onPrevQ} className="btn btn-prev">
+                  <ArrowLeft className="btn-icon" /> 이전
               </button>
-              <button
-                onClick={onNextQ}
-                className="p-3 px-6 text-white bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 transition duration-150"
-              >
-                다음
+              <button onClick={onNextQ} className="btn btn-next">
+                  다음 <ArrowRight className="btn-icon" />
               </button>
             </div>
           </div>
         );
       case 2:
         return (
-          <div id="thirth" className="flex flex-col gap-6">
-            <span className="text-lg font-semibold text-gray-700">
-              성별을 선택해 주세요.
-            </span>
-            <div className="flex justify-start gap-6">
-              <label className="flex items-center space-x-2 text-gray-700">
-                <input
-                  type="radio"
-                  name="sex"
-                  value="남"
-                  checked={formData.sex === "남"}
-                  onChange={handleChange}
-                  className="form-radio h-5 w-5 text-indigo-600"
-                />
-                <span>남성</span>
-              </label>
-              <label className="flex items-center space-x-2 text-gray-700">
-                <input
-                  type="radio"
-                  name="sex"
-                  value="여"
-                  checked={formData.sex === "여"}
-                  onChange={handleChange}
-                  className="form-radio h-5 w-5 text-indigo-600"
-                />
-                <span>여성</span>
-              </label>
+          <div id="thirth" className="page-content">
+            <span className="page-title-sm">성별을 선택해 주세요.</span>
+            <div className="sex-radio-group">
+              {['남', '여'].map(g => (
+                <label key={g} className={`sex-radio-label ${formData.sex === g ? 'radio-selected' : ''}`}>
+                  <input type="radio" name="sex" value={g} checked={formData.sex === g} onChange={handleChange} className="hidden" />
+                  <span>{g === '남' ? '남성' : '여성'}</span>
+                </label>
+              ))}
+            </div>
+            
+            <span className="page-title-sm mt-8">정보를 입력해주세요.</span>
+            <div className="input-group-row">
+              <div className="input-unit-container half">
+                <input type="number" name="height" value={formData.height} onChange={handleChange} placeholder="키" className="input-field full" />
+                <span className="input-unit">cm</span>
+              </div>
+              <div className="input-unit-container half">
+                <input type="number" name="weight" value={formData.weight} onChange={handleChange} placeholder="몸무게" className="input-field full" />
+                <span className="input-unit">kg</span>
+              </div>
+            </div>
+            
+            <div className="terms-info-box">
+              본 서비스는 AI 맞춤형 분석 제공을 위해 회원의 성별, 신체정보, 식습관 데이터 등을 수집·이용합니다. 수집된 정보는 회원 탈퇴 시 즉시 파기됩니다.
             </div>
 
-            <span className="text-lg font-semibold text-gray-700 mt-2">
-              정보를 입력해주세요.
-            </span>
-            <div className="flex gap-2">
-              <input
-                type="number"
-                name="height"
-                value={formData.height}
-                onChange={handleChange}
-                placeholder="키 (cm)"
-                className="w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-              <input
-                type="number"
-                name="weight"
-                value={formData.weight}
-                onChange={handleChange}
-                placeholder="몸무게 (kg)"
-                className="w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-            </div>
-
-            <div className="text-sm text-gray-500 bg-gray-50 p-3 rounded-lg border mt-2">
-              본 서비스는 AI 맞춤형 분석 제공을 위해 회원의 성별, 신체정보,
-              식습관 데이터 등을 수집·이용합니다. 수집된 정보는 회원 탈퇴 시
-              즉시 파기됩니다.
-            </div>
-
-            <label className="flex items-center space-x-2 text-gray-700">
-              <input
-                type="checkbox"
-                name="agreeTerms"
-                checked={formData.agreeTerms}
-                onChange={handleChange}
-                className="form-checkbox h-5 w-5 text-indigo-600 rounded"
-              />
-              <span>네, 상기 내용에 동의합니다.</span>
+            <label className="checkbox-label">
+              <input type="checkbox" name="agreeTerms" checked={formData.agreeTerms} onChange={handleChange} className="hidden" />
+              <span className="checkbox-custom">
+                {formData.agreeTerms && <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>}
+              </span>
+              <span className="checkbox-text">네, 동의합니다.</span>
             </label>
-
-            <div className="flex justify-between mt-4">
-              <button
-                onClick={onPrevQ}
-                className="p-3 px-6 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 transition duration-150"
-                disabled={loading}
-              >
-                이전
+            
+            <div className="btn-group-row">
+              <button onClick={onPrevQ} className="btn btn-prev" disabled={loading}>
+                  <ArrowLeft className="btn-icon" /> 이전
               </button>
-              <button
-                onClick={handleSignup}
-                className="p-3 px-6 text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 transition duration-150 disabled:opacity-50"
-                disabled={loading}
-              >
-                {loading ? "가입 중..." : "회원가입 완료"}
+              <button onClick={handleSignup} className="btn btn-finish" disabled={loading}>
+                {loading ? '가입 중...' : '다음 →'}
               </button>
             </div>
           </div>
         );
       case 3:
         return (
-          <div
-            id="fourth"
-            className="flex flex-col gap-4 items-center text-center p-8 bg-white rounded-lg shadow-lg"
-          >
-            <svg
-              className="w-16 h-16 text-green-500 mb-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            <span className="text-2xl font-bold text-gray-800">
-              회원가입과 정보 입력이 완료되었습니다!
-            </span>
-            <span className="text-gray-600">
-              지금 바로 당로그를 시작해보세요.
-            </span>
-            <button
-              onClick={() => nav("/")}
-              className="w-full mt-6 p-3 text-white bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 transition duration-150"
-            >
-              당로그 시작하기
-            </button>
+          <div id="fourth" className="finish-content">
+            <CheckCircle className="finish-icon" />
+            <span className="finish-title">회원가입과 정보 입력이 완료되었습니다!</span>
+            <span className="finish-text">지금 바로 당로그를 시작해보세요.</span>
+            <button onClick={() => nav("/")} className="btn btn-start">시작하기</button>
           </div>
         );
       default:
@@ -401,52 +277,35 @@ export default function Signup() {
     }
   };
 
+  const goMain = () => {
+    setPageNum("/")
+    nav("/")
+  }
+
+
   return (
-    <div
-      className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4"
-      id="signinbody"
-    >
-      {/* 로고 영역 */}
-      <div
-        id="Logo"
-        onClick={goMain}
-        className="flex items-center mb-8 cursor-pointer"
-      >
-        <span
-          id="Logoimg"
-          className="w-8 h-8 bg-indigo-600 rounded-full mr-2"
-        ></span>
-        <span className="text-2xl font-bold text-gray-800">당로그</span>
-      </div>
-
-      {/* 회원가입 페이지 영역 */}
-      <div
-        id="singinPage"
-        className="w-full max-w-md bg-white p-8 rounded-xl shadow-2xl"
-      >
-        <div
-          id="infobox"
-          className="text-center mb-6 text-xl font-bold text-indigo-600"
-        >
-          회원가입 ({currPage + 1}/3)
+    <div className="signup-body">
+      <h1 className="main-header" onClick={goMain}>
+        <span className="LOGO"></span> 당로그
+      </h1>      
+      <div className="main-card">        
+        <div className="info-card-container">
+            <InfoCard currPage={currPage} />
         </div>
-
-        {globalError && (
-          <div
-            className="p-3 mb-4 text-sm text-red-700 bg-red-100 rounded-lg text-center"
-            role="alert"
-          >
-            {globalError}
-          </div>
-        )}
-
-        {renderPage()}
+        <div className="form-box">
+            
+            <div className="form-content-area">
+              {globalError && (
+                <div className="error-box">
+                  {globalError}
+                </div>
+              )}
+              {renderPage()}
+            </div>
+        </div>
       </div>
 
-      {/* 푸터 영역 (생략) */}
-      <div id="footer" className="mt-8 text-sm text-gray-500">
-        © 2024 당로그. All rights reserved.
-      </div>
+      <div className="footer">© 2024 당로그. All rights reserved.</div>
     </div>
   );
 }
