@@ -47,7 +47,7 @@ const Login = () => {
                     <L.Input placeholder="아이디" id="ID" value={id} onChange={(e) => setId(e.target.value)}/>
                     <L.Input placeholder="비밀번호" id="PASS" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     <L.Button type="button" value="로그인하기" onClick={onLogin} />
-                    <L.Sign>회원가입하기</L.Sign>
+                    <L.Sign onClick={() => nav("/signup")}>회원가입하기</L.Sign>
                 </L.RightBox>
             </L.CenterBox>
         </L.Container>
