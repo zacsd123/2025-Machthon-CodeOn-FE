@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import Calendar from "react-calendar";
 import * as C from "../styles/StyledCalendar";
 import 'react-calendar/dist/Calendar.css';
-import { formatLongDate } from "react-calendar/dist/shared/dateFormatter.js";
 
 const MypageCalendar = ({loadDate,onChangeDate}) => {
     return(

@@ -11,6 +11,7 @@ import Info from "./pages/Info";
 import Header from "./components/Header";
 import { createContext, useState } from "react";
 import axios from "./axios/axios";
+import Report from "./pages/Report";
 
 export const SCFunctionContext = createContext()
 export const SCValueageContext = createContext()
@@ -19,6 +20,7 @@ function App() {
     const [pageNum, setPageNum] = useState("")
     const [isLogin, setIsLogin] = useState(false)
     const [token, setToken] = useState("")
+    const [foodid, setFoodid] = useState("")
 
     useState(() => {
       const getUser = async () => {
@@ -52,8 +54,8 @@ function App() {
 
 
   return (
-    <SCFunctionContext.Provider value={{setPageNum, setToken}}>
-      <SCValueageContext.Provider value={{pageNum, isLogin, token}}>
+    <SCFunctionContext.Provider value={{setPageNum, setToken, setFoodid}}>
+      <SCValueageContext.Provider value={{pageNum, isLogin, token, foodid}}>
         <BrowserRouter>
           <Header />
           <Routes>
@@ -67,6 +69,7 @@ function App() {
             <Route path="/mypage" element={<MypageEdit/>}/>
             <Route path="/mypage_sweet" element={<MypageSweet/>}/>
             <Route path="/mypage_history" element={<MypageHistory/>}/>
+            <Route path="/report" element={<Report/>}/>
           </Routes>
         </BrowserRouter>
       </SCValueageContext.Provider>
