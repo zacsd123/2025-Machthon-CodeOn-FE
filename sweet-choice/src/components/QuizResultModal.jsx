@@ -10,7 +10,7 @@ const QuizResultModal = ({ isCorrect, explanation, onNextQuestion }) => {
                     </button>
                 </div>
                 <div className="modal-body">
-                    <p className="explanation-label">설명 ~~</p>
+                    <p className="explanation-label">설명</p>
                     <p className="explanation-text">{explanation}</p>
                 </div>
             </div>

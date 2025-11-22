@@ -378,11 +378,35 @@ export default function Search() {
   const [TableSelect, setTableSelect] = useState(null);
   const [SearchValue, setSearchValue] = useState("");
   const [Shaking, setShaking] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
   const [ButtonText, setButtonText] = useState("선택하기");
   const [CategoryList, setCategoryList] = useState([]);
   const [food, setFood] = useState(null);
   const [foods, setFoods] = useState([]);
   const [SelectedSugar, setSelectedSugar] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  const currentFoods = foods.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(foods.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const goToPrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   const onSugarSelect = (sugarKR) => {
     if (SelectedSugar === sugarKR) {
@@ -413,31 +437,46 @@ export default function Search() {
     setTableSelect(index);
   };
 
-  const onSearchItem = () => {
-    const SearchedItem = { Category: null, CategoryItem: null };
-    MockCategory.filter((item, index) => {
-      // return MockCategoryList[item].filter((value, idx) => {
-      //   if (value === SearchValue) {
-      //     SearchedItem["Category"] = index;
-      //     SearchedItem["CategoryItem"] = value;
-      //   }
-      // });
-    });
+  // searchModal 컴포넌트 내부
 
-    // console.log(SearchedItem)
+// props로 전달받는 상태 및 함수들 (예시)
+// const { SearchValue, ToggleTopic, setCategoryList, onCategorySelect } = props; 
+// 또는 React Hook으로 관리되는 상태/함수
 
-    if (
-      !(
-        SearchedItem["Category"] === null ||
-        SearchedItem["CategoryItem"] === null
-      )
-    ) {
-      onTableSelect(SearchedItem["CategoryItem"]);
-      onCategorySelect(SearchedItem["Category"]);
-    } else {
-      onTableSelect(null);
-    }
+const onSearchItem = async () => {
+  if (ToggleTopic) {
+    console.log("현재 당 검색 모드입니다.");
+    return;
+  }
+
+  const query = SearchValue.trim();
+  setIsLoading(true);
+  if (!query) {
+    alert("검색어를 입력해 주세요.");
+    return;
+  }
+
+  const localUserData = localStorage.getItem("accessToken");
+  const headers = {
+    "authorization": `Bearer ${localUserData}`
   };
+
+  try {    
+    const res = await axios.get(`/api/food/search/food?search=${query}`, {
+      headers: headers
+    });
+    
+    setCategoryList(res.data);
+    onCategorySelect(null);
+    
+  } catch (e) {
+    console.error("음식 키워드 검색 실패:", e);
+    setCategoryList([]); 
+    alert("음식 검색 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const CurrentValue = (e) => {
     const target = e.target;
@@ -534,19 +573,21 @@ export default function Search() {
         const headers = {
           authorization: `Bearer ${localUserData}`,
         };
-        const res = await axios.get(`/api/food/search/sugar?search=${SelectedSugar}`, {
-          headers:headers
-        })
-        setFoods(res.data)
-        console.log(res.data)
+        const res = await axios.get(
+          `/api/food/search/sugar?search=${SelectedSugar}`,
+          {
+            headers: headers,
+          }
+        );
+        setFoods(res.data);
+        console.log(res.data);
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
-    }
-    getFoods()
-      onSearchModal();
-    
-  }
+    };
+    getFoods();
+    onSearchModal();
+  };
 
   return (
     <div id="Search">
@@ -554,19 +595,22 @@ export default function Search() {
         <div id="search_area" onClick={onSearchModal}>
           <span onClick={onSearchModal}>원하는 정보를 검색하세요!</span>
           <div id="search_button">
-            <img src="a" alt="돋보기" onClick={onSearchModal} />
+            <span className="search-icon" onClick={onSearchItem}>🔍</span>
             <span onClick={onSearchModal}>검색하기</span>
           </div>
         </div>
         {searchButtonInput ? (
           <div id="searchModal">
             <div id="searchModalBody">
-              <div id="ToggleMainTopic" onClick={onToggleTopic}>
-                <div id="Slider">
-                  <div id="word" className={ToggleTopic ? "left" : "right"}>
-                    {ToggleTopic ? "당" : "음식"}
+              <div id="ModalHeader">
+                <div id="ToggleMainTopic" onClick={onToggleTopic}>
+                  <div id="Slider">
+                    <div id="word" className={ToggleTopic ? "left" : "right"}>
+                      {ToggleTopic ? "당" : "음식"}
+                    </div>
                   </div>
                 </div>
+                <span id="exit" onClick={onSearchModal}>나가기</span>
               </div>
               <div id="InputArea">
                 <input
@@ -577,7 +621,7 @@ export default function Search() {
                   value={SearchValue}
                 />
                 <span>
-                  <img alt="돋보기" onClick={onSearchItem} />
+                  <span className="search-icon" onClick={onSearchItem}>🔍</span>
                 </span>
               </div>
               {!ToggleTopic ? (
@@ -592,6 +636,8 @@ export default function Search() {
                   UpCageNum={UpCageNum}
                   DownCageNum={DownCageNum}
                   CateNum={CateNum}
+                  isLoading={isLoading}
+                  setIsLoading={setIsLoading}
                 />
               ) : (
                 <SugarSearch
@@ -601,7 +647,10 @@ export default function Search() {
                 />
               )}
               <div id="ReturnArea">
-                <button id="SubmitButton" onClick={!ToggleTopic ? onSelectItem : goFoods}>
+                <button
+                  id="SubmitButton"
+                  onClick={!ToggleTopic ? onSelectItem : goFoods}
+                >
                   {ButtonText}
                 </button>
               </div>
@@ -609,7 +658,7 @@ export default function Search() {
           </div>
         ) : (
           <div id="resultTable">
-            {(food && !ToggleTopic) && (
+            {food && !ToggleTopic && (
               <table className="food-info-table">
                 <thead>
                   <tr>
@@ -660,13 +709,61 @@ export default function Search() {
                 </tbody>
               </table>
             )}
-            {(!food&& ToggleTopic) && foods.map((item, index) => (
-              <div key={index}>{item.foodName}</div>
-            ))}
+            {(!food && ToggleTopic && foods.length > 0) ? (
+              <div>
+                <h3>
+                  음식 목록 ({foods.length}개 중 {indexOfFirstItem + 1}~
+                  {Math.min(indexOfLastItem, foods.length)}번)
+                </h3>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>순서</th>
+                      <th>음식 이름</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentFoods.map((item, index) => (
+                      <tr key={index}>
+                        {/* index + 시작 인덱스 + 1 로 전체 목록 기준의 순서 표시 */}
+                        <td>{indexOfFirstItem + index + 1}</td>
+                        <td>{item.foodName}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+                {/* 🧭 페이지네이션 컨트롤 */}
+                <div style={{ marginTop: "20px", textAlign: "center" }}>
+                  <button onClick={goToPrevPage} disabled={currentPage === 1}>
+                    이전
+                  </button>
+
+                  {/* 간단하게 현재 페이지와 전체 페이지 표시 */}
+                  <span style={{ margin: "0 10px" }}>
+                    페이지 {currentPage} / {totalPages}
+                  </span>
+
+                  <button
+                    onClick={goToNextPage}
+                    disabled={currentPage === totalPages}
+                  >
+                    다음
+                  </button>
+
+                  {/* 선택적으로 페이지 번호 버튼을 나열할 수도 있습니다 */}
+                  {/* 예시: Array.from({ length: totalPages }, (_, i) => i + 1).map(...) */}
+                </div>
+              </div>
+            ) : !food ?
+              <div>해당하는 음식이 없습니다</div>
+            :
+            null
+            }
           </div>
         )}
-
-        <span onClick={goReport}>리포트보기</span>
+        {!ToggleTopic ? <span onClick={goReport}>리포트보기</span> : null}
       </div>
     </div>
   );

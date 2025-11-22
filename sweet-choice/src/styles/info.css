@@ -1,3 +1,101 @@
 .content-container {
     padding-top: 100px;
 }
+
+.chosung-filter-area {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+
+    width: 80px;
+    padding: 10px 0;
+    margin-right: 50px;
+    background-color: #fffaf0;
+    border: 1px solid #f0e0c9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.filter-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-bottom: 1px solid #f0e0c9;
+    margin-bottom: 10px;
+}
+
+.chosung-item {
+    padding: 8px 0;
+    cursor: pointer;
+    text-align: center;
+    color: #555;
+    font-size: 1.1em;
+    transition: background-color 0.1s, color 0.1s;
+}
+
+.chosung-item:hover {
+    background-color: #f0e0c9;
+}
+
+.chosung-item.selected {
+    font-weight: bold;
+    color: #000;
+    background-color: #e8e0d4;
+    border-left: 3px solid #f8c95a;
+}
+
+.reset-button {
+    background: none;
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+    font-size: 0.7em;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+}
+
+.reset-button:hover {
+    background-color: #eee;
+}
+
+.card-section {
+    flex-grow: 1;
+    margin-left: 150px;
+}
+
+.section-title {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #4b4b4b;
+}
+
+.section-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    padding-right: 20px;
+}
+
+.quiz-button {
+    background-color: #f7e0bc;
+    border: 1px solid #e3a948;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    color: #4b4b4b;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.quiz-button:hover {
+    background-color: #e3a948;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}

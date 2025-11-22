@@ -45,6 +45,13 @@
     overflow: hidden;
 }
 
+#ModalHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+#exit {}
+
 #ToggleMainTopic {
     width: 150px;
     height: auto;

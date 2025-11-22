@@ -9,6 +9,7 @@ const Quiz = ({ onExitQuiz }) => {
     const [isCorrect, setIsCorrect] = useState(false);
     const [explanation, setExplanation] = useState('');
     const [quizData, setQuizData] = useState([])
+    const [onLoad, setOnLoad] = useState(false)
 
     useEffect(() => {
         const getQuizdata = async () => {
@@ -33,6 +34,7 @@ const Quiz = ({ onExitQuiz }) => {
 
     const handleAnswer = (userAnswer) => {
         const getIsCor = async () => {
+            setOnLoad(true)
             const localUserData = localStorage.getItem("accessToken")
             const headers = {
             "authorization": `Bearer ${localUserData}`
@@ -48,10 +50,14 @@ const Quiz = ({ onExitQuiz }) => {
                 
             } catch (e) {
                 console.log(e, url)
+            } finally {
+                setOnLoad(false)
             }
         }
         getIsCor()
-        setShowResult(!showResult)
+        if (!onLoad) {
+            setShowResult(!showResult)
+        }
     };
 
     const handleNextQuestion = () => {
@@ -86,7 +92,7 @@ const Quiz = ({ onExitQuiz }) => {
                 </div>
             </div>
 
-            {showResult && (
+            {showResult && !onLoad &&(
                 <QuizResultModal
                     isCorrect={isCorrect}
                     explanation={explanation}

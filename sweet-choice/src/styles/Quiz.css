@@ -1,3 +1,195 @@
 .quiz-card-container {
     padding-top: 100px;
 }
+
+.quiz-card-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    min-height: 60vh;
+    position: relative;
+}
+
+.quiz-card {
+    background-color: #fcf6e6;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.quiz-question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: #4b4b4b;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #f0e0c9;
+    padding-bottom: 20px;
+}
+
+.quiz-q-icon {
+    font-size: 1.5em;
+    color: #f8c95a;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.quiz-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.ox-button {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    font-size: 3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid transparent;
+}
+
+.ox-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.o-button {
+    background-color: #e0f2ff;
+    /* 연한 파랑 */
+    color: #007bff;
+    border-color: #007bff;
+}
+
+.x-button {
+    background-color: #ffe0e0;
+    /* 연한 빨강 */
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.o-button:hover:not(:disabled) {
+    background-color: #cce7ff;
+    transform: scale(1.05);
+}
+
+.x-button:hover:not(:disabled) {
+    background-color: #ffcccc;
+    transform: scale(1.05);
+}
+
+.quiz-exit-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* --- 모달 스타일 --- */
+.quiz-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* 흐릿한 배경 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.quiz-modal {
+    background-color: #fcf6e6;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #f0e0c9;
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+    flex-grow: 1;
+    padding-left: 10px;
+}
+
+.modal-icon {
+    font-size: 1.8em;
+}
+
+.quiz-modal.correct .modal-icon {
+    color: #28a745;
+}
+
+.quiz-modal.incorrect .modal-icon {
+    color: #dc3545;
+}
+
+.next-button {
+    background-color: #f8c95a;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.next-button:hover {
+    background-color: #e3a948;
+}
+
+.modal-body {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #f0e0c9;
+}
+
+.explanation-label {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+.explanation-text {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #333;
+}
