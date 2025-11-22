@@ -4,6 +4,7 @@ import axios from "../axios/axios";
 
 const SweetList = ({ date }) => {
   const [list, setList] = useState([]);
+  const [adi,setAdi] = useState();
   useEffect(() => {
     const loadList = async () => {
       try {
@@ -21,6 +22,7 @@ const SweetList = ({ date }) => {
         });
         console.log("SweetList 응답:", res.data);
         setList(res.data.records);
+        setAdi(res.data.sugarADI);
       } catch (err) {
         console.error("리스트 조회 실패", err);
       }
@@ -32,7 +34,7 @@ const SweetList = ({ date }) => {
 
   return (
     <S.Box>
-      <S.Title>섭취한 당   일일섭취허용ADI: {list.sugarADI}g</S.Title>
+      <S.Title>섭취한 당 &nbsp;&nbsp;&nbsp;<span style={{fontSize:"1rem"}}>일일섭취허용 ADI: {adi}g</span></S.Title>
       <S.Line></S.Line>
       <>
         {list.length === 0 ? (
