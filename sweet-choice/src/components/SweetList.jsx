@@ -32,7 +32,7 @@ const SweetList = ({ date }) => {
 
   return (
     <S.Box>
-      <S.Title>섭취한 당</S.Title>
+      <S.Title>섭취한 당   일일섭취허용ADI: {list.sugarADI}g</S.Title>
       <S.Line></S.Line>
       <>
         {list.length === 0 ? (
