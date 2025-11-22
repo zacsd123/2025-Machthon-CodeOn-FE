@@ -6,14 +6,17 @@ import { SCFunctionContext } from "../App";
 
 const Login = () => {
 
-    const {setPageNum} = useContext(SCFunctionContext)
+    const {setPageNum, setToken} = useContext(SCFunctionContext)
 
     const [id, setId] = useState("")
     const [password, setPassword] = useState("")
 
     const nav = useNavigate()
     
-    const goMain = () => nav("/");
+    const goMain = () => {
+        setPageNum("/")
+        nav("/")
+    };
 
     const onLogin = async() => {
         try{
@@ -24,6 +27,8 @@ const Login = () => {
             const res= await axios.post("/api/auth/login",body);
             const token =res.data;
             localStorage.setItem("accessToken", token);
+            setToken(token)
+            setPageNum("/") 
             nav("/");
         }catch(error){
             console.error("로그인 실패", error);
