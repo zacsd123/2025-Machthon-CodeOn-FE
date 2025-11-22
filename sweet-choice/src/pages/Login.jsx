@@ -38,10 +38,14 @@ const Login = () => {
     return(
         <L.Container>
             <L.Logo>
-                <img src={`${process.env.PUBLIC_URL}/images/loginlogo.svg`} onClick={goMain}/>
+                <img width={"130px"} src={`${process.env.PUBLIC_URL}/images/logo.svg`} onClick={goMain}/>
             </L.Logo>
             <L.CenterBox>
-                <L.LeftBox></L.LeftBox>
+                <L.LeftBox>
+                    <L.LTitle>로그인</L.LTitle>
+                    <L.LText><p>당로그에 오신 것을 환영합니다!</p>
+                        로그인으로 당로그를 시작해보세요!</L.LText>
+                </L.LeftBox>
                 <L.RightBox>
                     <L.Title>Login</L.Title>
                     <L.Input placeholder="아이디" id="ID" value={id} onChange={(e) => setId(e.target.value)}/>
@@ -50,6 +54,7 @@ const Login = () => {
                     <L.Sign onClick={() => nav("/signup")}>회원가입하기</L.Sign>
                 </L.RightBox>
             </L.CenterBox>
+            <L.Footer>© 2024 당로그. All rights reserved.</L.Footer>
         </L.Container>
 
     );
