@@ -27,6 +27,10 @@
     justify-content: center;
     align-items: center;
 }
+#search_button {
+    display: flex;
+    gap: 20px;
+}
 
 #searchModalBody {
     width: 80%;
@@ -38,7 +42,15 @@
     flex-direction: column;
     justify-content: space-around;
     row-gap: 20px;
+    overflow: hidden;
 }
+
+#ModalHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+#exit {}
 
 #ToggleMainTopic {
     width: 150px;
@@ -100,7 +112,12 @@
     color: #beb4a2;
 }
 
-#FoodCategory{
+#FoodCategory{display: flex;
+    flex-direction: column; /* 내부 요소 (CategoryRow, ListArea)를 세로로 배치 */
+    flex-grow: 1; /* 부모(searchModalBody)의 남은 공간을 차지 */
+    
+    /* 중요: Flex Item이 콘텐츠에 의해 무한히 커지는 것을 방지 */
+    min-height: 0;
 }
 
 #CategoryRow {
@@ -222,7 +239,8 @@
 
 #ReturnArea {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
+
 }
 
 #SubmitButton {
@@ -234,4 +252,8 @@
 
 #SubmitButton:hover {
     cursor: pointer;
+}
+
+#resultTable {
+    padding: 20px;
 }

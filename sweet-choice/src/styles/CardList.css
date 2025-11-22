@@ -1,0 +1,86 @@
+.card-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .chosung-filter-area {
+        position: static;
+        transform: none;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #f0e0c9;
+        margin-bottom: 15px;
+    }
+
+    .card-section {
+        margin-left: 0;
+        padding-top: 10px;
+    }
+
+    .card-grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card-item {
+    background-color: #fcf6e6;
+    padding: 20px;
+    border: 1px solid #f0e0c9;
+    min-height: 150px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.card-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    margin-top: 0;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #4b4b4b;
+}
+
+.card-description {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.card-details {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #f0e0c9;
+}
+
+.card-details p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.card-characteristic {
+    margin-top: 10px;
+    font-size: 0.85em;
+    color: #999;
+    white-space: pre-wrap;
+}
+
+.no-result {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    color: #999;
+    font-size: 1.1em;
+}
