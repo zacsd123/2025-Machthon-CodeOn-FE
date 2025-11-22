@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../styles/search.css";
 import { FoodCategory } from "../components/FoodCategory";
 import axios from "../axios/axios";
 import SugarSearch from "../components/SugarSearch";
+import { SCFunctionContext, SCValueageContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const MockCategory = [
   "강냉이/팝콘",
@@ -276,7 +278,8 @@ const MockCategory = [
   return a.localeCompare(b);
 });
 
-const sugarList = [
+const sugarList = 
+[
   {
     EN: "galactose",
     KR: "갈락토오스",
@@ -396,6 +399,11 @@ export default function Search() {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const {setFoodid} = useContext(SCFunctionContext)
+  const {foodid} = useContext(SCValueageContext)
+
+  const nav = useNavigate()
+
   const goToNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
@@ -437,11 +445,6 @@ export default function Search() {
     setTableSelect(index);
   };
 
-  // searchModal 컴포넌트 내부
-
-// props로 전달받는 상태 및 함수들 (예시)
-// const { SearchValue, ToggleTopic, setCategoryList, onCategorySelect } = props; 
-// 또는 React Hook으로 관리되는 상태/함수
 
 const onSearchItem = async () => {
   if (ToggleTopic) {
@@ -549,6 +552,8 @@ const onSearchItem = async () => {
             headers: headers,
           });
           console.log("리포트 데이터 수신 성공:", res.data);
+          setFoodid(res.data.foodId)
+          console.log(foodid)
         } catch (e) {
           console.error("리포트 요청 오류 (400):", e);
           if (e.response && e.response.data) {
@@ -560,9 +565,13 @@ const onSearchItem = async () => {
           } else {
             alert("리포트 요청 실패: 네트워크 또는 예상치 못한 서버 오류");
           }
+        } finally {
+          
+      nav("/report")
         }
       };
       getReportData();
+
     }
   };
 
@@ -658,112 +667,111 @@ const onSearchItem = async () => {
           </div>
         ) : (
           <div id="resultTable">
-            {food && !ToggleTopic && (
-              <table className="food-info-table">
-                <thead>
-                  <tr>
-                    <th className="order-col">순서</th>
-                    <th className="type-col">종류</th>
-                    <th className="note-col">비고</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="food-name-row">
-                    <td>1</td>
-                    <td>
-                      <strong>{food.foodName}</strong>
-                    </td>
-                    <td>{food.foodCategoryName}</td>
-                  </tr>
-                  <tr>
-                    <td className="nutrition-label">열량</td>
-                    <td className="nutrition-value">{food.kcal}</td>
-                    <td className="nutrition-label">(Kcal)</td>
-                  </tr>
-                  <tr>
-                    <td className="nutrition-label">탄수화물</td>
-                    <td className="nutrition-value">
-                      {food.carbohydrate.toFixed(1)}
-                    </td>
-                    <td className="nutrition-label">(g)</td>
-                  </tr>
-                  <tr>
-                    <td className="nutrition-label">당류</td>
-                    <td className="nutrition-value">
-                      {food.totalSugar.toFixed(1)}
-                    </td>
-                    <td className="nutrition-label">(g)</td>
-                  </tr>
-                  <tr>
-                    <td className="nutrition-label">단백질</td>
-                    <td className="nutrition-value">
-                      {food.protein.toFixed(1)}
-                    </td>
-                    <td className="nutrition-label">(g)</td>
-                  </tr>
-                  <tr>
-                    <td className="nutrition-label">지방</td>
-                    <td className="nutrition-value">{food.fat.toFixed(1)}</td>
-                    <td className="nutrition-label">(g)</td>
-                  </tr>
-                </tbody>
-              </table>
-            )}
-            {(!food && ToggleTopic && foods.length > 0) ? (
-              <div>
-                <h3>
-                  음식 목록 ({foods.length}개 중 {indexOfFirstItem + 1}~
-                  {Math.min(indexOfLastItem, foods.length)}번)
-                </h3>
+      {food && !ToggleTopic && (
+        <table className="food-info-table">
+          <thead>
+            <tr>
+              <th className="order-col">순서</th>
+              <th className="type-col">종류</th>
+              <th className="note-col">비고</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="food-name-row">
+              <td>1</td>
+              <td>
+                <strong>{food.foodName}</strong>
+              </td>
+              <td>{food.foodCategoryName}</td>
+            </tr>
+            <tr>
+              <td className="nutrition-label">열량</td>
+              <td className="nutrition-value">{food.kcal}</td>
+              <td className="nutrition-label">(Kcal)</td>
+            </tr>
+            <tr>
+              <td className="nutrition-label">탄수화물</td>
+              <td className="nutrition-value">
+                {food.carbohydrate.toFixed(1)}
+              </td>
+              <td className="nutrition-label">(g)</td>
+            </tr>
+            <tr>
+              <td className="nutrition-label">당류</td>
+              <td className="nutrition-value">
+                {food.totalSugar.toFixed(1)}
+              </td>
+              <td className="nutrition-label">(g)</td>
+            </tr>
+            <tr>
+              <td className="nutrition-label">단백질</td>
+              <td className="nutrition-value">
+                {food.protein.toFixed(1)}
+              </td>
+              <td className="nutrition-label">(g)</td>
+            </tr>
+            <tr>
+              <td className="nutrition-label">지방</td>
+              <td className="nutrition-value">{food.fat.toFixed(1)}</td>
+              <td className="nutrition-label">(g)</td>
+            </tr>
+          </tbody>
+        </table>
+      )}
 
-                <table>
-                  <thead>
-                    <tr>
-                      <th>순서</th>
-                      <th>음식 이름</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {currentFoods.map((item, index) => (
-                      <tr key={index}>
-                        {/* index + 시작 인덱스 + 1 로 전체 목록 기준의 순서 표시 */}
-                        <td>{indexOfFirstItem + index + 1}</td>
-                        <td>{item.foodName}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+      {(!food && ToggleTopic && foods && foods.length > 0) ? (
+        <div>
+          <h3>
+            음식 목록 ({foods.length}개 중 {indexOfFirstItem + 1}~
+            {Math.min(indexOfLastItem, foods.length)}번)
+          </h3>
 
-                {/* 🧭 페이지네이션 컨트롤 */}
-                <div style={{ marginTop: "20px", textAlign: "center" }}>
-                  <button onClick={goToPrevPage} disabled={currentPage === 1}>
-                    이전
-                  </button>
+          <table className="food-list-table">
+            <thead>
+              <tr>
+                <th>순서</th>
+                <th>음식 이름</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentFoods && currentFoods.map((item, index) => (
+                <tr key={index}>
+                  <td>{indexOfFirstItem + index + 1}</td>
+                  <td>{item.foodName}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-                  {/* 간단하게 현재 페이지와 전체 페이지 표시 */}
-                  <span style={{ margin: "0 10px" }}>
-                    페이지 {currentPage} / {totalPages}
-                  </span>
+          <div className="pagination-controls">
+            <button onClick={goToPrevPage} disabled={currentPage === 1}>
+              이전
+            </button>
 
-                  <button
-                    onClick={goToNextPage}
-                    disabled={currentPage === totalPages}
-                  >
-                    다음
-                  </button>
+            <span style={{ margin: "0 10px" }}>
+              페이지 {currentPage} / {totalPages}
+            </span>
 
-                  {/* 선택적으로 페이지 번호 버튼을 나열할 수도 있습니다 */}
-                  {/* 예시: Array.from({ length: totalPages }, (_, i) => i + 1).map(...) */}
-                </div>
-              </div>
-            ) : !food ?
-              <div>해당하는 음식이 없습니다</div>
-            :
-            null
-            }
+            <button
+              onClick={goToNextPage}
+              disabled={currentPage === totalPages}
+            >
+              다음
+            </button>
           </div>
+        </div>
+      ) : !food && ToggleTopic ? (
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+          해당하는 음식이 없습니다
+        </div>
+      ) : null}
+    </div>
         )}
-        {!ToggleTopic ? <span onClick={goReport}>리포트보기</span> : null}
+        {!ToggleTopic ? 
+        <div className="reportBt">
+          <button onClick={goReport} className="reb">리포트보기</button>
+        </div>
+        : null}
       </div>
     </div>
   );

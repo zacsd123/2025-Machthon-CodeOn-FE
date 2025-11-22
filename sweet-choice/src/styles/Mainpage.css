@@ -1,6 +1,22 @@
+:root {
+    --primary-yellow: #FFB22C;
+    --secondary-light-yellow: #FFF9E9;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --footer-brown: #d4a753;
+}
+
+#Mainpage {
+    background-color: var(--text-light);
+    font-family: Arial, sans-serif;
+    color: var(--text-dark);
+}
+
+/* 1. 메인 이미지 섹션 (mainimgbody) */
 #mainimgbody {
     position: relative;
-    height: 100vh;
+    height: 80vh; 
+    min-height: 500px;
     margin: 0;
     padding: 0;
     
@@ -11,21 +27,43 @@
     text-align: center;
     
     overflow: hidden;
+    z-index: 1; 
 }
 
 #backgroundIMG {
     position: absolute;
     inset: 0;
     
-    background-size: auto 100%;
-    
+    background-size: cover; 
+    background-repeat: no-repeat;
     background-position: center;
     
     z-index: 0;
-
     background-image: url('../imgs/backgroundIMG.png'); 
+    opacity: 0.9;
 }
 
+/* 메인 타이틀 및 서브 타이틀 */
+#mainTextContainer {
+    z-index: 1;
+    color: var(--text-dark);
+}
+
+#mainTitle {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.2;
+    color: var(--text-dark);
+}
+
+#mainSubtitle {
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* 스크롤 인디케이터 (제공된 코드) */
 .scroll-indicator {
     position: absolute;
     bottom: 2.5rem;
@@ -34,36 +72,40 @@
 }
 
 @keyframes bounce {
-
     0%,
     100% {
         transform: translateY(-50%);
         animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
     }
-
     50% {
         transform: translateY(0);
         animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
     }
 }
 
+/* 2. 컨텐츠 바디 (contentbody) */
 #contentbody {
     overflow-x: hidden;
+    padding: 3rem 0 0 0;
 }
 
+/* Ability 섹션 */
 #abilities {
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    padding: 20px;
     flex-direction: column;
 
     width: 100%;
     max-width: 1280px; 
+    padding: 2rem 5%;
 }
 
 #abilityText {
-    font-size: large;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
 }
 
 #abilityList {
@@ -72,41 +114,208 @@
     flex-wrap: nowrap; 
     gap: 2rem; 
     
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
-    padding: 1rem 1.5rem 1.5rem 1.5rem; 
+    margin-left: -5%; 
+    margin-right: -5%;
+    padding: 1rem 5% 1.5rem 5%; 
     
-    -ms-overflow-style: none;  
+    -ms-overflow-style: none; 
     scrollbar-width: none; 
 
-    cursor: grab; 
-    cursor: -webkit-grab;
-    user-select: none; 
+    cursor: grab; /* 마우스 커서 모양을 grab으로 설정 (JS에서 grabbing으로 변경) */
+    user-select: none; /* 드래그 중 텍스트 선택 방지 */
     -webkit-user-select: none;
     -moz-user-select: none;
-    -ms-user-select: none;
-    scroll-behavior: auto; 
-}
-
-.abilityItem {
-    background-color: #FFB22C; 
-    padding: 1.5rem; 
-    border-radius: 0.5rem; 
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
-    text-align: center; 
-    transition: transform 0.3s ease; 
-
-    flex-shrink: 0; 
-    width: 80%; 
-    max-width: 300px; 
-    box-sizing: border-box; 
-
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    -ms-user-select: none; 
 }
 
 #abilityList::-webkit-scrollbar {
     display: none;
+}
+
+.abilityItem {
+    background-color: var(--secondary-light-yellow);
+    padding: 1.5rem; 
+    border-radius: 0.5rem; 
+    box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.1); 
+    text-align: left;
+    transition: transform 0.3s ease; 
+
+    flex-shrink: 0; 
+    width: 80%; 
+    max-width: 250px;
+    box-sizing: border-box; 
+
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ItemTitle {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    padding-bottom: 5px;
+}
+
+.ItemContent {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+#reportSection {
+    background-color: #f7f7f7;
+    padding: 4rem 5%;
+    margin-top: 3rem;
+    border-top: 1px solid #eee;
+}
+
+#reportTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+#reportContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* 왼쪽: 리포트 개요 */
+#reportSummary {
+    flex: 1;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.reportVisual {
+    width: 300px;
+    height: 300px;
+    background-color: var(--secondary-light-yellow);
+    border-radius: 10px;
+    border: 1px solid var(--primary-yellow);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: var(--primary-yellow);
+}
+
+.reportDescription {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* 오른쪽: AI 피드백 */
+#aiFeedback {
+    flex: 1;
+    max-width: 450px;
+    background-color: var(--text-light);
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#aiIconContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+#aiIcon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+#aiText {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+#aiText strong {
+    color: var(--primary-yellow);
+}
+
+#dailyHealthText {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    color: #666;
+    font-weight: 500;
+}
+
+#footer {
+    background-color: var(--footer-brown);
+    color: var(--text-light);
+    padding: 1.5rem 5%;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    text-align: center;
+}
+
+#footer p:first-child {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    
+    #mainTitle {
+        font-size: 2.5rem;
+    }
+
+    #mainSubtitle {
+        font-size: 1rem;
+    }
+
+    #abilities {
+        padding: 1rem 0;
+    }
+
+    #abilityText {
+        padding-left: 5%;
+    }
+
+    .abilityItem {
+        max-width: 280px;
+    }
+
+    #reportContainer {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    #reportSummary, #aiFeedback {
+        max-width: 100%;
+        padding: 2rem;
+    }
+
+    .reportVisual {
+        width: 250px;
+        height: 250px;
+    }
 }

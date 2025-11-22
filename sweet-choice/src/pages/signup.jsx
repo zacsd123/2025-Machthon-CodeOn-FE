@@ -305,7 +305,7 @@ export default function Signup() {
         </div>
       </div>
 
-      <div className="footer">© 2024 당로그. All rights reserved.</div>
+      <div className="footer">© 2025 당로그. All rights reserved.</div>
     </div>
   );
 }

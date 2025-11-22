@@ -113,10 +113,10 @@
 }
 
 #FoodCategory{display: flex;
-    flex-direction: column; /* 내부 요소 (CategoryRow, ListArea)를 세로로 배치 */
-    flex-grow: 1; /* 부모(searchModalBody)의 남은 공간을 차지 */
+    flex-direction: column; 
+    flex-grow: 1; 
     
-    /* 중요: Flex Item이 콘텐츠에 의해 무한히 커지는 것을 방지 */
+    
     min-height: 0;
 }
 
@@ -156,32 +156,12 @@
     display: flex;
 }
 
-/* .CategoryItem ::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 20%;
-    width: 0%;
-    height: 2px;
-    background-color: #FA812F;
-    transition: 0.3s;
-} */
 
 .active {
     font-weight: bold;
     transition: 0.3s;
 }
 
-/* .CategoryItem span.active::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 40%;
-    width: 100%;
-    height: 2px;
-    background-color: #FA812F;
-    transition: 0.3s;
-} */
 
 .CountButton {
     display: flex;
@@ -255,5 +235,132 @@
 }
 
 #resultTable {
+    padding: 20px;
+}
+
+
+#resultTable {
+  
+  max-width: 600px; 
+  
+  margin: 20px auto; 
+  
+  padding: 0 15px; 
+}
+
+
+.food-info-table,
+.food-list-table {
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-top: 15px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+
+.food-info-table th,
+.food-info-table td,
+.food-list-table th,
+.food-list-table td {
+  padding: 12px 15px; 
+  border: 1px solid #ddd; 
+  text-align: left; 
+}
+
+
+.food-info-table thead th,
+.food-list-table thead th {
+  background-color: #f5f5f5; 
+  font-weight: bold;
+  text-align: center; 
+}
+
+
+.food-info-table .order-col {
+  width: 10%; 
+  text-align: center;
+}
+
+.food-info-table .type-col {
+  width: 45%; 
+}
+
+.food-info-table .note-col {
+  width: 45%; 
+}
+
+
+.food-info-table .nutrition-label {
+  background-color: #f9f9f9; 
+  text-align: right; 
+  font-weight: 500;
+}
+
+.food-info-table .nutrition-value {
+  text-align: center; 
+  font-weight: bold;
+}
+
+
+.food-info-table .food-name-row {
+  background-color: #fffacd; 
+}
+
+.food-name-row td {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+
+.food-list-table {
+  
+}
+
+.food-list-table th:first-child,
+.food-list-table td:first-child {
+  width: 15%; 
+  text-align: center;
+}
+
+
+.pagination-controls {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination-controls button {
+  padding: 8px 15px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #f0f0f0;
+}
+
+.pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  font-weight: bold;
+}
+
+.reportBt {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    padding-right: 200px;
+    margin-right: 200px;
+}
+
+.reb {
+    border: none;
+    border-radius: 10px;
+    background-color: #FFB22C;
     padding: 20px;
 }
