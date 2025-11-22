@@ -1,5 +1,7 @@
+import "../styles/CardList.css"
 import Card from "./Card"
-export const CardList = ({ data, isLoading }) => (
+
+export const CardList = ({ data, isLoading, selectedChosung }) => (
     <div className="card-grid-container">
         {isLoading ? (
             <p className="loading-indicator">
@@ -17,6 +19,8 @@ export const CardList = ({ data, isLoading }) => (
                     sweet={item.sweet}
                 />
             ))
+        ) : selectedChosung === null ? (
+            <p className="no-result">초성을 선택해 주세요!</p>
         ) : (
             <p className="no-result">해당 초성으로 시작하는 정보가 없습니다.</p>
         )}

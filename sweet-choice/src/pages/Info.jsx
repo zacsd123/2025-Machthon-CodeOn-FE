@@ -25,7 +25,7 @@ function Info() {
   const [onQuiz, setOnQuiz] = useState(false);
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedChosung, setSelectedChosung] = useState(null);
+  const [selectedChosung, setSelectedChosung] = useState("null");
   
   useEffect(() => {
     const fetchPosts = async () => {
@@ -72,11 +72,6 @@ function Info() {
         :
         <>
         <aside className="chosung-filter-area">
-          <div className="filter-title">
-            <span>가나다</span>
-            <button className="reset-button">AD</button>
-          </div>
-
           {searchList.map((char) => (
             <div
               key={char}
@@ -100,7 +95,7 @@ function Info() {
             </button>
           </div>
 
-          <CardList data={posts} isLoading={isLoading} /> 
+          <CardList data={posts} isLoading={isLoading} selectedChosung={selectedChosung} /> 
         </div>
         </>
         }
