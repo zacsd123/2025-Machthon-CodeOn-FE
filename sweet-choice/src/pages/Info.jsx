@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CardList } from "../components/CardList";
 import axios from "../axios/axios"
 import Quiz from "../components/Quiz";
+import "../styles/info.css"
 
 const searchList = [
   "가",
